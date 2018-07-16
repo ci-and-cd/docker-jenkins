@@ -17,8 +17,7 @@ RUN echo "https://mirror.tuna.tsinghua.edu.cn/alpine/v3.7/main" > /etc/apk/repos
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-
-USER ${user}
+USER jenkins
 #RUN cat /usr/local/bin/plugins.sh
 COPY docker/plugins.sh /usr/local/bin/plugins.sh
 COPY docker/plugins.txt /usr/share/jenkins/plugins.txt
