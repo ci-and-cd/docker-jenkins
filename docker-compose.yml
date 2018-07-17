@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+      - IMAGE_ARG_ALPINE_MIRROR=dl-cdn.alpinelinux.org
     image: cirepo/jenkins:2.124-alpine
     restart: always
     container_name: ${JENKINS_DOMAIN:-jenkins}.${INFRASTRUCTURE:-local}
