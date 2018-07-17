@@ -18,7 +18,7 @@ ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 
-USER ${user}
+USER jenkins
 #RUN cat /usr/local/bin/plugins.sh
 COPY docker/plugins.sh /usr/local/bin/plugins.sh
 COPY docker/plugins.txt /usr/share/jenkins/plugins.txt
