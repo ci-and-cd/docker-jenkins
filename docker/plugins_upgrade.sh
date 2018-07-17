@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# usage: ./plugins_upgrade.sh ./plugins.txt ./plugins_new.txt
+# usage: ./plugins_upgrade.sh ./usr/share/jenkins/plugins.txt ./usr/share/jenkins/plugins_new.txt
 
 export PATH="/usr/local/bin:$PATH"
 

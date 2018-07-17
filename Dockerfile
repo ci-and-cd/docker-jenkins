@@ -19,15 +19,11 @@ ENV LC_ALL en_US.UTF-8
 
 
 USER jenkins
-#RUN cat /usr/local/bin/plugins.sh
-COPY docker/plugins.sh /usr/local/bin/plugins.sh
-COPY docker/plugins.txt /usr/share/jenkins/plugins.txt
+
+#COPY docker/usr/share/jenkins/ref/plugins/*.hpi /usr/share/jenkins/ref/plugins
+COPY docker /
+
 #ENV JENKINS_UC_DOWNLOAD http://updates.jenkins-ci.org/download
 #ENV JENKINS_UC_DOWNLOAD http://ftp.yz.yamagata-u.ac.jp/pub/misc/jenkins
 ENV JENKINS_UC_DOWNLOAD https://mirrors.tuna.tsinghua.edu.cn/jenkins
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt
-
-#COPY docker/plugins/*.hpi /usr/share/jenkins/ref/plugins
-
-COPY docker/executors.groovy /usr/share/jenkins/ref/init.groovy.d/executors.groovy
-COPY docker/custom.groovy /usr/share/jenkins/ref/init.groovy.d/custom.groovy
