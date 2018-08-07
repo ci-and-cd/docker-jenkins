@@ -13,7 +13,7 @@ Find initial passowrd (token) in console log after first start.
 
 If an error occurred during installation: No such plugin: cloudbees-folder  
 see: http://stackoverflow.com/questions/37358775/jenkins-2-5-installation-error-an-error-occurred-during-installation-forbidden  
-`http://jenkins.internal:18083/restart`
+`http://jenkinsal:18083/restart`
 
 ## References
 

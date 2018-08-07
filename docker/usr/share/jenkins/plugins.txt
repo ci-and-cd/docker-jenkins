@@ -1,5 +1,5 @@
 
-# check plugin update: http://jenkins.local:18083/pluginManager/
+# check plugin update: http://jenkins:18083/pluginManager/
 # plugin mirrors: https://jenkins.io/download/mirrors/
 # plugin mirrors: http://mirrors.jenkins-ci.org/status.html
 
