@@ -1,6 +1,6 @@
 
 # from alpine:3.7 or debian:stretch-slim (version without -alpine)
-FROM jenkins/jenkins:2.124-alpine
+FROM jenkins/jenkins:lts-alpine
 
 USER root
 # see: http://wiki.alpinelinux.org/wiki/Setting_the_timezone
@@ -21,8 +21,8 @@ ENV LC_ALL en_US.UTF-8
 
 USER jenkins
 
-#COPY docker/usr/share/jenkins/ref/plugins/*.hpi /usr/share/jenkins/ref/plugins
-COPY docker /
+#COPY --chown=jenkins docker/usr/share/jenkins/ref/plugins/*.hpi /usr/share/jenkins/ref/plugins
+COPY --chown=jenkins docker /
 
 #ENV JENKINS_UC_DOWNLOAD http://updates.jenkins-ci.org/download
 #ENV JENKINS_UC_DOWNLOAD http://ftp.yz.yamagata-u.ac.jp/pub/misc/jenkins

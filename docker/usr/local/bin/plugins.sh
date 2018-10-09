@@ -98,7 +98,7 @@ while read -r spec || [ -n "$spec" ]; do
     then
         echo "Downloading ${plugin[0]}:${plugin[1]}"
         #curl --retry 30 --retry-delay 10 -sSL -f "${JENKINS_UC_DOWNLOAD}/plugins/${plugin[0]}/${plugin[1]}/${plugin[0]}.hpi" -o "$REF/${plugin[0]}.jpi"
-        aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -o "$REF/${plugin[0]}.jpi" "${JENKINS_UC_DOWNLOAD}/plugins/${plugin[0]}/${plugin[1]}/${plugin[0]}.hpi"
+        aria2c --file-allocation=none -c -x 10 -s 10 -m 0 --console-log-level=notice --log-level=notice --summary-interval=0 -d "$REF" -o ${plugin[0]}.jpi "${JENKINS_UC_DOWNLOAD}/plugins/${plugin[0]}/${plugin[1]}/${plugin[0]}.hpi"
         unzip -qqt "$REF/${plugin[0]}.jpi"
         (( COUNT_PLUGINS_INSTALLED += 1 ))
     else

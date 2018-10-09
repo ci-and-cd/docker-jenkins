@@ -3,3 +3,6 @@
 *.iml
 
 .DS_Store
+
+/docker/usr/share/jenkins/plugins_new.txt
+/docker/usr/share/jenkins/plugins_old.txt
