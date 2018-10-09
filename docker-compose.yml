@@ -11,18 +11,33 @@ services:
     restart: always
     container_name: ${CONTAINER_HOST_NAME:-jenkins}
     hostname: ${CONTAINER_HOST_NAME:-jenkins}
+    networks:
+      local-network:
+        ipv4_address: 172.16.238.33
+        #ipv6_address: 2001:3984:3989::33
     ports:
     - "${JENKINS_EXTERNAL_PORT:-18083}:${JENKINS_PORT:-8080}"
     - "50000:50000/tcp"
     volumes:
-    - volume-jenkins-master:/var/jenkins_home
+    - jenkins_home:/var/jenkins_home
     environment:
     - JENKINS_SLAVE_AGENT_PORT=50000
 
-volumes:
-  volume-jenkins-master: {}
-
 networks:
-  default:
+  local-network:
     external: true
-    name: oss-network
+    driver: bridge
+    enable_ipv6: true
+    ipam:
+      driver: default
+      config:
+      - subnet: 172.16.238.0/24
+      #- subnet: 2001:3984:3989::/64
+
+volumes:
+  jenkins_home:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/data/jenkins_home
+      o: bind
