@@ -107,7 +107,7 @@ envinject-api:1.5
 extended-choice-parameter:0.64
 external-monitor-job:1.7
 favorite:2.3.2
-git-parameter:0.9.5
+git-parameter:0.9.6
 git-server:1.7
 pipeline-github-lib:1.0
 github-organization-folder:1.6
@@ -134,6 +134,7 @@ publish-over-ssh:1.20.1
 pubsub-light:1.12
 resource-disposer:0.12
 script-security:1.46
+ssh-agent:1.17
 sse-gateway:1.16
 ssh-credentials:1.14
 swarm:3.14
