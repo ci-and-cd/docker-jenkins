@@ -127,12 +127,14 @@ matrix-project:1.13
 maven-plugin:3.1.2
 metrics:4.0.2.2
 momentjs:1.1.1
+nodelabelparameter:1.7.2
 pam-auth:1.4
 plain-credentials:1.4
 publish-over:0.22
 publish-over-ssh:1.20.1
 pubsub-light:1.12
 resource-disposer:0.12
+role-strategy:2.1.0
 script-security:1.46
 ssh-agent:1.17
 sse-gateway:1.16
