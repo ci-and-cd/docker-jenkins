@@ -114,6 +114,7 @@ github-organization-folder:1.6
 github:1.29.3
 gitlab-plugin:1.5.10
 handlebars:1.1.1
+http_request:1.8.22
 icon-shim:2.0.3
 jackson2-api:2.8.11.3
 javadoc:1.4
