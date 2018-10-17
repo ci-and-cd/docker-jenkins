@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile
       args:
       - IMAGE_ARG_ALPINE_MIRROR=${IMAGE_ARG_ALPINE_MIRROR:-mirror.tuna.tsinghua.edu.cn}
-    image: ${IMAGE_PREFIX:-cirepo}/${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine}
     restart: always
     container_name: ${CONTAINER_HOST_NAME:-jenkins}
     hostname: ${CONTAINER_HOST_NAME:-jenkins}
