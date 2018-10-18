@@ -8,7 +8,6 @@ services:
       args:
       - IMAGE_ARG_ALPINE_MIRROR=${IMAGE_ARG_ALPINE_MIRROR:-mirror.tuna.tsinghua.edu.cn}
     image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine}
-    restart: always
     container_name: ${CONTAINER_HOST_NAME:-jenkins}
     hostname: ${CONTAINER_HOST_NAME:-jenkins}
     networks:
@@ -18,6 +17,7 @@ services:
     ports:
     - "${JENKINS_EXTERNAL_PORT:-18083}:${JENKINS_PORT:-8080}"
     - "50000:50000/tcp"
+    restart: always
     volumes:
     - jenkins_home:/var/jenkins_home
     environment:
