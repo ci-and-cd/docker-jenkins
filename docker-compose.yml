@@ -7,9 +7,19 @@ services:
       dockerfile: Dockerfile
       args:
       - IMAGE_ARG_ALPINE_MIRROR=${IMAGE_ARG_ALPINE_MIRROR:-mirror.tuna.tsinghua.edu.cn}
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine}
     container_name: ${CONTAINER_HOST_NAME:-jenkins}
+    environment:
+    - JENKINS_SLAVE_AGENT_PORT=50000
     hostname: ${CONTAINER_HOST_NAME:-jenkins}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine}
+    labels:
+      deploy.config.commit: ${LABEL_DEPLOY_CONFIG_COMMIT:-unknown}
+      deploy.config.name: ${LABEL_DEPLOY_CONFIG_NAME:-unknown}
+      deploy.config.ref: ${LABEL_DEPLOY_CONFIG_REF:-unknown}
+      deploy.util.commit: ${LABEL_DEPLOY_UTIL_COMMIT:-unknown}
+      deploy.util.ref: ${LABEL_DEPLOY_UTIL_REF:-unknown}
+      instance.name.short: ${LABEL_INSTANCE_NAME_SHORT:-standalone.jenkins}
+      instance.name: ${LABEL_INSTANCE_NAME:-127.0.0.1/jenkins/standalone}
     networks:
       local-network:
         ipv4_address: 172.16.238.33
@@ -20,8 +30,6 @@ services:
     restart: always
     volumes:
     - jenkins_home:/var/jenkins_home
-    environment:
-    - JENKINS_SLAVE_AGENT_PORT=50000
 
 networks:
   local-network:
