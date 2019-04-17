@@ -11,7 +11,7 @@ services:
     environment:
     - JENKINS_SLAVE_AGENT_PORT=50000
     hostname: ${CONTAINER_HOST_NAME:-standalone.jenkins}
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine-SNAPSHOT}
     labels:
       deploy.config.commit: ${LABEL_DEPLOY_CONFIG_COMMIT:-unknown}
       deploy.config.name: ${LABEL_DEPLOY_CONFIG_NAME:-unknown}

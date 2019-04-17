@@ -11,7 +11,7 @@ export PATH="/usr/local/bin:$PATH"
 url_prefix="https://plugins.jenkins.io"
 
 target_file="$2"
-if [ "$1" != "${target_file}" ] && [ ! -z "${target_file}" ]; then
+if [[ "$1" != "${target_file}" ]] && [[ ! -z "${target_file}" ]]; then
     rm -f ${target_file}
     touch ${target_file}
 else
@@ -19,7 +19,7 @@ else
     exit 1
 fi
 
-while read -r spec || [ -n "$spec" ]; do
+while read -r spec || [[ -n "$spec" ]]; do
 
     plugin=(${spec//:/ });
     echo "${spec}"
@@ -32,19 +32,19 @@ while read -r spec || [ -n "$spec" ]; do
 
     latest_version="${version}"
     latest_in_span=$(curl -sSL ${url_prefix}/${name} | grep -oP "<span.+\"v\".+(?<=>)(\d|\.|-)+(?=</span>)" | grep -oP '(?<=>)(\d|\.|-)+' | head -1)
-    if [ "$?" != "0" ]; then (>&2 echo "    error query latest_version for ${name}"); fi
+    if [[ "$?" != "0" ]]; then (>&2 echo "    error query latest_version for ${name}"); fi
     latest_in_changelog=$(curl -sSL ${url_prefix}/${name} | grep -E '<h3.+Version.+' | grep -oP "(?<=Version)(\d|\.)+(?=\()" | awk 'NR==1{print $1}')
-    if [ "$?" != "0" ]; then (>&2 echo "    error query latest_version for ${name}"); fi
+    if [[ "$?" != "0" ]]; then (>&2 echo "    error query latest_version for ${name}"); fi
 
-    if [ ! -z "${latest_in_span}" ] && [ ! -z "${latest_in_changelog}" ] && [ "${latest_in_span}" == "${latest_in_changelog}" ]; then
+    if [[ ! -z "${latest_in_span}" ]] && [[ ! -z "${latest_in_changelog}" ]] && [[ "${latest_in_span}" == "${latest_in_changelog}" ]]; then
         latest_version="${latest_in_span}"
-    elif [ ! -z "${latest_in_span}" ]; then
+    elif [[ ! -z "${latest_in_span}" ]]; then
         latest_version="${latest_in_span}"
     else
         (>&2 echo "    warn: error query latest_version for ${name} latest_in_span: ${latest_in_span}, latest_in_changelog: ${latest_in_changelog}")
     fi
 
-    if [ "${version}" != "${latest_version}" ]; then
+    if [[ "${version}" != "${latest_version}" ]]; then
         (>&2 echo "${name} new version found, current version: ${version}, latest version: ${latest_version}")
         echo "${name}:${latest_version}" >> ${target_file}
     else
