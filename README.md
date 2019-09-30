@@ -9,7 +9,7 @@ Dockerfile [ci-and-cd/docker-jenkins on Github](https://github.com/ci-and-cd/doc
 
 ## Note
 
-Find initial passowrd (token) in console log after first start.
+Find initial passowrd (token) in console log after first start or run `docker exec -it standalone.jenkins cat /var/jenkins_home/secrets/initialAdminPassword`.
 
 If an error occurred during installation: No such plugin: cloudbees-folder  
 see: http://stackoverflow.com/questions/37358775/jenkins-2-5-installation-error-an-error-occurred-during-installation-forbidden  

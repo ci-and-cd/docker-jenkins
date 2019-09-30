@@ -124,6 +124,7 @@ javadoc:1.5
 jdk-tool:1.2
 jquery-detached:1.2.1
 jquery:1.12.4-0
+jquery-ui:1.0.2
 junit:1.27
 lockable-resources:2.5
 mapdb-api:1.0.9.0
