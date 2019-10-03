@@ -14,7 +14,7 @@ RUN set -ex \
   && echo "Asia/Shanghai" > /etc/timezone \
   && apk del tzdata \
   && rm -rf /tmp/* /var/cache/apk/* \
-  && echo "UTC+8:00" > /etc/TZ
+  && echo "UTC+12:00" > /etc/TZ
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
