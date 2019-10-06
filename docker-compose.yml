@@ -11,7 +11,7 @@ services:
     environment:
     - JENKINS_SLAVE_AGENT_PORT=50000
     hostname: ${CONTAINER_HOST_NAME:-standalone.jenkins}
-    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine-SNAPSHOT}
+    image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine}
     labels:
       deploy.config.commit: ${LABEL_DEPLOY_CONFIG_COMMIT:-unknown}
       deploy.config.name: ${LABEL_DEPLOY_CONFIG_NAME:-unknown}
@@ -31,6 +31,7 @@ services:
     volumes:
     - jenkins_home:/var/jenkins_home
 
+# `docker network create --driver=bridge --ipam-driver=default --subnet=172.16.238.0/24 local-network`
 networks:
   local-network:
     external: true
