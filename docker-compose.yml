@@ -6,10 +6,10 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-      - IMAGE_ARG_ALPINE_MIRROR=${IMAGE_ARG_ALPINE_MIRROR:-mirror.tuna.tsinghua.edu.cn}
+        - IMAGE_ARG_ALPINE_MIRROR=${IMAGE_ARG_ALPINE_MIRROR:-mirror.tuna.tsinghua.edu.cn}
     container_name: ${CONTAINER_HOST_NAME:-standalone.jenkins}
     environment:
-    - JENKINS_SLAVE_AGENT_PORT=50000
+      - JENKINS_SLAVE_AGENT_PORT=50000
     hostname: ${CONTAINER_HOST_NAME:-standalone.jenkins}
     image: ${IMAGE_PREFIX:-cirepo/}${IMAGE_NAME:-jenkins}:${IMAGE_TAG:-lts-alpine}
     labels:
@@ -25,23 +25,31 @@ services:
         ipv4_address: ${IPV4_ADDRESS:-172.16.238.33}
         #ipv6_address: ${IPV6_ADDRESS:-2001:3984:3989::33}
     ports:
-    - "${EXTERNAL_JENKINS_8080_PORT:-18083}:8080"
-    - "${EXTERNAL_JENKINS_50000_PORT:-50000}:50000/tcp"
+      - "${EXTERNAL_JENKINS_8080_PORT:-18083}:8080"
+      - "${EXTERNAL_JENKINS_50000_PORT:-50000}:50000/tcp"
     restart: always
     volumes:
-    - jenkins_home:/var/jenkins_home
+      - jenkins_home:/var/jenkins_home
 
-# `docker network create --driver=bridge --ipam-driver=default --subnet=172.16.238.0/24 local-network`
+# With Docker Swarm
+# `docker network rm ingress`
+# `docker network create --ingress --driver=overlay --ipam-driver=default --subnet=10.255.0.0/16 --gateway=10.255.0.1 --opt com.docker.network.driver.mtu=1450 --opt com.docker.network.driver.overlay.vxlanid_list=4096 ingress`
+# `docker network create --driver=overlay --ipam-driver=default --subnet=172.16.238.0/24 --gateway=172.16.238.1 --opt com.docker.network.driver.mtu=1450 --attachable local-network`
+# Or without Docker Swarm
+# `docker network create --driver=bridge --ipam-driver=default --subnet=172.16.238.0/24 --gateway=172.16.238.1 --opt com.docker.network.driver.mtu=1450 local-network`
 networks:
   local-network:
     external: true
+    driver_opts:
+      com.docker.network.driver.mtu: 1450
     driver: bridge
-    enable_ipv6: true
+    enable_ipv6: false
     ipam:
       driver: default
       config:
-      - subnet: 172.16.238.0/24
-      #- subnet: 2001:3984:3989::/64
+        - gateway: 172.16.238.1
+        - subnet: 172.16.238.0/24
+        #- subnet: 2001:3984:3989::/64
 
 volumes:
   jenkins_home:
